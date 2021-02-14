@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 getFoods(FoodNotifier foodNotifier) async {
   List<Food> _foodList = [];
 
-  await FirebaseFirestore.instance.collection('foods').get().then((QuerySnapshot querySnapshot) => {
+  await FirebaseFirestore.instance.collection('goods').doc('1').collection('drinks').get().then((QuerySnapshot querySnapshot) => {
     querySnapshot.docs.forEach((doc) {
       Food food = Food.fromMap(doc.data());
       _foodList.add(food);
