@@ -61,4 +61,39 @@ class DBStorageAdd {
 
     return error;
   }
+
+  Future<String> newTovar(
+      String _category, String _name, String _price, String _weight, String _image) {
+    CollectionReference _goods = setCollection('goods');
+    _goods
+        .doc('1')
+        .collection(_category)
+        .doc(_name)
+        .set({
+          'name': _name,
+          'category': _category,
+          'price': _price,
+          'weight': _weight,
+          'image': _image,
+        })
+        .then((value) => error = 'Tovar Added')
+        .catchError((catchE) => error = 'Failed to add tovar: $catchE');
+
+    return error;
+  }
+
+  Future<String> newCategory(
+      String _name, String _image) {
+    CollectionReference _goods = setCollection('categories');
+    _goods
+        .doc(_name)
+        .set({
+          'name': _name,
+          'image': _image,
+        })
+        .then((value) => error = 'Category Added')
+        .catchError((catchE) => error = 'Failed to add category: $catchE');
+
+    return error;
+  }
 }

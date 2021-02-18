@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodre_delivery/db/storage/db_storage_add.dart';
 import 'package:foodre_delivery/pages/home_page.dart';
+import 'package:foodre_delivery/widgets/category_tile.dart';
 import 'package:foodre_delivery/widgets/goods_builder.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -13,9 +14,6 @@ class _WelcomePageState extends State<WelcomePage> {
   bool _selectedPage = false;
   bool _obscureText = true;
   bool _showAuthDialog = false;
-  bool _showSnackBar = false;
-
-  String _message = 'Помилка';
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -24,6 +22,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
+
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
@@ -161,16 +160,14 @@ class _WelcomePageState extends State<WelcomePage> {
                         margin: EdgeInsets.only(left: _width * 0.025),
                         child: TextButton(
                           onPressed: () {
-                            /*setState(() {
+                            setState(() {
                               _showAuthDialog = true;
-                            });*/
-                            Navigator.pushAndRemoveUntil(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          HomePage()),
-                                                  (Route<dynamic> route) =>
-                                                      false);
+                            });
+                            /*Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage(uid: 'UzMsV5mLOdgCQsuKAKMvM5vPtL82')),
+                                (Route<dynamic> route) => false);*/
                           },
                           child: Row(
                             children: [
@@ -236,6 +233,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       Container(
                         padding: EdgeInsets.all(_width * 0.02),
                         width: _width * 0.191,
+                        height: _width * 0.3,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
@@ -248,156 +246,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             ),
                           ],
                         ),
-                        child: Wrap(
-                          direction: Axis.vertical,
-                          spacing: _width * 0.007,
-                          children: [
-                            Container(
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: _width * 0.023,
-                                      child: Image.asset(
-                                        'assets/images/icons/bread.png',
-                                      ),
-                                    ),
-                                    SizedBox(width: _width * 0.008),
-                                    Text(
-                                      'Пекарня',
-                                      style: TextStyle(
-                                        fontSize: _width * 0.013,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: _width * 0.023,
-                                      child: Image.asset(
-                                        'assets/images/icons/harvest.png',
-                                      ),
-                                    ),
-                                    SizedBox(width: _width * 0.008),
-                                    Text(
-                                      'Фрукти і овочі',
-                                      style: TextStyle(
-                                        fontSize: _width * 0.013,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: _width * 0.023,
-                                      child: Image.asset(
-                                        'assets/images/icons/milk.png',
-                                      ),
-                                    ),
-                                    SizedBox(width: _width * 0.008),
-                                    Text(
-                                      'Молочне і яйця',
-                                      style: TextStyle(
-                                        fontSize: _width * 0.013,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: _width * 0.023,
-                                      child: Image.asset(
-                                        'assets/images/icons/softdrinks.png',
-                                      ),
-                                    ),
-                                    SizedBox(width: _width * 0.008),
-                                    Text(
-                                      'Напої',
-                                      style: TextStyle(
-                                        fontSize: _width * 0.013,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: _width * 0.023,
-                                      child: Image.asset(
-                                        'assets/images/icons/cupcake.png',
-                                      ),
-                                    ),
-                                    SizedBox(width: _width * 0.008),
-                                    Text(
-                                      'Солодощі',
-                                      style: TextStyle(
-                                        fontSize: _width * 0.013,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: _width * 0.023,
-                                      child: Image.asset(
-                                        'assets/images/icons/meat.png',
-                                      ),
-                                    ),
-                                    SizedBox(width: _width * 0.008),
-                                    Text(
-                                      'М\'ясо, риба, птиця',
-                                      style: TextStyle(
-                                        fontSize: _width * 0.013,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        child: CategoryTile(),
                       ),
                       SizedBox(width: _width * 0.02),
                       Container(
@@ -458,155 +307,11 @@ class _WelcomePageState extends State<WelcomePage> {
                     ],
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(left: _width * 0.24),
-                      margin: EdgeInsets.only(top: _width * 0.014),
-                      width: double.infinity,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Пекарня',
-                        style: TextStyle(
-                          fontSize: _width * 0.03,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: _width * 0.02),
-                      padding: EdgeInsets.only(left: _width * 0.223),
-                      width: double.infinity,
-                      height: _width * 0.21,
-                      child: GoodsLineBuilder(
-                        collection: 'goods',
-                        document: '1',
-                        good: 'Пекарня',
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: _width * 0.24),
-                      margin: EdgeInsets.only(top: _width * 0.014),
-                      width: double.infinity,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Фрукти і овочі',
-                        style: TextStyle(
-                          fontSize: _width * 0.03,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: _width * 0.02),
-                      padding: EdgeInsets.only(left: _width * 0.223),
-                      width: double.infinity,
-                      height: _width * 0.21,
-                      child: GoodsLineBuilder(
-                        collection: 'goods',
-                        document: '1',
-                        good: 'Фрукти і овочі',
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: _width * 0.24),
-                      margin: EdgeInsets.only(top: _width * 0.014),
-                      width: double.infinity,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Молочне і яйця',
-                        style: TextStyle(
-                          fontSize: _width * 0.03,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: _width * 0.02),
-                      padding: EdgeInsets.only(left: _width * 0.223),
-                      width: double.infinity,
-                      height: _width * 0.21,
-                      child: GoodsLineBuilder(
-                        collection: 'goods',
-                        document: '1',
-                        good: 'Молочне і яйця',
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: _width * 0.24),
-                      margin: EdgeInsets.only(top: _width * 0.014),
-                      width: double.infinity,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Напої',
-                        style: TextStyle(
-                          fontSize: _width * 0.03,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: _width * 0.02),
-                      padding: EdgeInsets.only(left: _width * 0.223),
-                      width: double.infinity,
-                      height: _width * 0.21,
-                      child: GoodsLineBuilder(
-                        collection: 'goods',
-                        document: '1',
-                        good: 'Напої',
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: _width * 0.24),
-                      margin: EdgeInsets.only(top: _width * 0.014),
-                      width: double.infinity,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Солодощі',
-                        style: TextStyle(
-                          fontSize: _width * 0.03,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: _width * 0.02),
-                      padding: EdgeInsets.only(left: _width * 0.223),
-                      width: double.infinity,
-                      height: _width * 0.21,
-                      child: GoodsLineBuilder(
-                        collection: 'goods',
-                        document: '1',
-                        good: 'Солодощі',
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: _width * 0.24),
-                      margin: EdgeInsets.only(top: _width * 0.014),
-                      width: double.infinity,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'М\'ясо, риба, птиця',
-                        style: TextStyle(
-                          fontSize: _width * 0.03,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: _width * 0.02),
-                      padding: EdgeInsets.only(left: _width * 0.223),
-                      width: double.infinity,
-                      height: _width * 0.21,
-                      child: GoodsLineBuilder(
-                        collection: 'goods',
-                        document: '1',
-                        good: 'М\'ясо, риба, птиця',
-                      ),
-                    ),
-                    SizedBox(height: _width * 0.12),
-                  ],
+                Container(
+                  alignment: Alignment.topLeft,
+                  width: double.maxFinite,
+                  height: _width * 1.3,
+                  child: GoodsBuilder(),
                 ),
               ],
             ),
@@ -901,7 +606,11 @@ class _WelcomePageState extends State<WelcomePage> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          HomePage()),
+                                                          HomePage(
+                                                              uid: FirebaseAuth
+                                                                  .instance
+                                                                  .currentUser
+                                                                  .uid)),
                                                   (Route<dynamic> route) =>
                                                       false);
                                             }
@@ -1082,7 +791,11 @@ class _WelcomePageState extends State<WelcomePage> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          HomePage()),
+                                                          HomePage(
+                                                              uid: FirebaseAuth
+                                                                  .instance
+                                                                  .currentUser
+                                                                  .uid)),
                                                   (Route<dynamic> route) =>
                                                       false);
                                             }
